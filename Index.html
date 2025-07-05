@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Company Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-gray-800 text-white py-4">
+    <nav class="flex justify-center gap-6">
+      <a href="#home" class="hover:underline">Home</a>
+      <a href="#profile" class="hover:underline">Our Profile</a>
+      <a href="#contact" class="hover:underline">Message Us</a>
+    </nav>
+  </header>
+
+  <!-- Home Section -->
+  <section id="home" class="text-center py-10">
+    <h1 id="welcome-text" class="text-3xl font-bold">Hi!</h1>
+  </section>
+<hr/>
+  <!-- Profile Section -->
+ <!-- Profile Section -->
+<section
+  id="profile"
+  class="p-6 bg-[url('https://via.placeholder.com/800x200')] bg-cover bg-center bg-no-repeat rounded-md shadow text-white"
+>
+  <!-- Overlay hitam semi-transparan -->
+  <div class="bg-black bg-opacity-60 p-6 rounded-md">
+    <h2 class="text-xl font-semibold mb-2">Tentang Perusahaan</h2>
+    <p class="mb-4">
+      Perusahaan kami bergerak di bidang teknologi informasi, memberikan solusi digital modern untuk berbagai kebutuhan industri.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-2">Visi & Misi</h2>
+    <p><strong>Visi:</strong> Menjadi perusahaan teknologi terdepan di Asia Tenggara.</p>
+    <p><strong>Misi:</strong> Memberikan layanan digital yang inovatif dan berkualitas tinggi.</p>
+  </div>
+</section>
+
+  <!-- Contact Form Section -->
+  <section id="contact" class="bg-white shadow-lg p-6 max-w-xl mx-auto rounded-lg mt-10">
+    <h2 class="text-2xl font-bold mb-4">Message Us</h2>
+    <form id="contactForm" class="flex flex-col gap-4">
+
+      <div>
+        <label for="name" class="block font-semibold">Nama:</label>
+        <input type="text" id="name" name="name" required class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+
+      <div>
+        <label for="dob" class="block font-semibold">Tanggal Lahir:</label>
+        <input type="date" id="dob" name="dob" required class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+
+      <div>
+        <span class="block font-semibold mb-1">Jenis Kelamin:</span>
+        <label class="inline-flex items-center mr-4">
+          <input type="radio" name="gender" value="Laki-Laki" required class="mr-1" />
+          Laki-Laki
+        </label>
+        <label class="inline-flex items-center">
+          <input type="radio" name="gender" value="Perempuan" required class="mr-1" />
+          Perempuan
+        </label>
+      </div>
+
+      <div>
+        <label for="message" class="block font-semibold">Pesan:</label>
+        <textarea id="message" name="message" required class="w-full border border-gray-300 rounded px-3 py-2 h-24"></textarea>
+      </div>
+
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Kirim</button>
+    </form>
+
+    <div id="formResult" class="mt-4 text-green-700 font-semibold"></div>
+  </section>
+
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const name = prompt("Masukkan nama Anda:");
+      const welcomeText = document.getElementById("welcome-text");
+      if (name) {
+        welcomeText.textContent = `Hi ${name}!`;
+      }
+    });
+
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const dob = document.getElementById("dob").value.trim();
+      const gender = document.querySelector('input[name="gender"]:checked')?.value;
+      const message = document.getElementById("message").value.trim();
+
+      if (name && dob && gender && message) {
+        const resultHTML = `
+          <p>Terima kasih, <strong>${name}</strong>!</p>
+          <p>Tanggal Lahir: ${dob}</p>
+          <p>Jenis Kelamin: ${gender}</p>
+          <p>Pesan: ${message}</p>
+        `;
+        document.getElementById("formResult").innerHTML = resultHTML;
+        this.reset();
+      } else {
+        alert("Mohon lengkapi semua field.");
+      }
+    });
+  </script>
+</body>
+</html>
